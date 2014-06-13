@@ -4,31 +4,32 @@ import java.awt.Rectangle;
 
 public class Window {
 
-	private int hwnd;
-	private String title;
-	private Rectangle bound;
+	private int hWnd;
 
-	public Window(int hwnd, String title, Rectangle bound) {
+	public Window(int hWnd) {
 		super();
-		this.hwnd = hwnd;
-		this.title = title;
-		this.bound = bound;
+		this.hWnd = hWnd;
 	}
 
-	public int getHwnd() {
-		return hwnd;
+	public boolean isVisible() {
+		return Windows.isWindowVisible(hWnd);
 	}
 
 	public String getTitle() {
-		return title;
+		return Windows.getWindowTitle(hWnd);
 	}
 
 	public Rectangle getBound() {
-		return bound;
+		return Windows.getWindowBound(hWnd);
+	}
+
+	public void show(int nCmdShow) {
+		Windows.showWindow(hWnd, nCmdShow);
 	}
 
 	public String toString() {
-		return "[" + hwnd + "] - " + title + " - " + bound;
+		Rectangle bound = getBound();
+		return hWnd + " - " + getTitle() + " (" + (isVisible() ? "Visible" : "Hidden") + ") [x=" + bound.x + ", y=" + bound.y + ", w=" + bound.width + ", h=" + bound.height + "]";
 	}
 
 }
