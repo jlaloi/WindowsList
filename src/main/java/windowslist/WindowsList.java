@@ -63,7 +63,7 @@ public class WindowsList {
 		return User32.instance.ShowWindow(window.getHwnd(), nCmdShow);
 	}
 
-	protected static interface User32 extends StdCallLibrary {
+	public static interface User32 extends StdCallLibrary {
 		final User32 instance = (User32) Native.loadLibrary("user32", User32.class);
 
 		boolean IsWindowVisible(int hWnd);
@@ -79,7 +79,7 @@ public class WindowsList {
 		int GetTopWindow(Pointer wnd);
 	}
 
-	protected static class RECT extends Structure {
+	public static class RECT extends Structure {
 		public int left, top, right, bottom;
 
 		protected List<String> getFieldOrder() {
